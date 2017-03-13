@@ -9,7 +9,8 @@ Galeria powiekszonych obrazów scrolluje się w lewo lub w prawo.
 Na dole jest przycisk back a systemowy przycisk back nie działa. 
 przycisk back wraca do grida
 
-![]({{site.baseurl}}/https://github.com/Kamajabu/inf_gallery/blob/master/visual.jpg?raw=true)
+![image of project](https://github.com/Kamajabu/inf_gallery/blob/master/visual.jpg)
+
 
 Opis2
 
