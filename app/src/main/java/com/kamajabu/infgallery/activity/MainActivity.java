@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 ft.setCustomAnimations(R.anim.anim_slide_in_top, R.anim.anim_slide_out_bottom);
 
                 SlideshowDialogFragment newFragment = SlideshowDialogFragment.newInstance();
+                newFragment.setCancelable(false);
                 newFragment.setArguments(bundle);
                 newFragment.show(ft, "slideshow");
             }
@@ -153,4 +154,6 @@ public class MainActivity extends AppCompatActivity {
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(req);
     }
+
+
 }

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +19,9 @@ import com.kamajabu.infgallery.R;
 import com.kamajabu.infgallery.model.Image;
 
 import java.util.ArrayList;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class SlideshowDialogFragment extends DialogFragment {
     private String TAG = SlideshowDialogFragment.class.getSimpleName();
@@ -48,6 +52,14 @@ public class SlideshowDialogFragment extends DialogFragment {
         lblTitle = (TextView) v.findViewById(R.id.title);
         lblDate = (TextView) v.findViewById(R.id.date);
 
+        Button button = (Button) v.findViewById(R.id.backButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+        ButterKnife.bind(v);
+
         images = (ArrayList<Image>) getArguments().getSerializable("images");
         selectedPosition = getArguments().getInt("position");
 
@@ -62,6 +74,11 @@ public class SlideshowDialogFragment extends DialogFragment {
 
         return v;
     }
+
+//    @OnClick(R.id.backButton)
+//    public void backButtonDidTouch(){
+//        dismiss();
+//    }
 
     private void setCurrentItem(int position) {
         viewPager.setCurrentItem(position, false);
@@ -100,6 +117,7 @@ public class SlideshowDialogFragment extends DialogFragment {
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
     }
+
 
     //	adapter
     public class MyViewPagerAdapter extends PagerAdapter {
@@ -146,4 +164,6 @@ public class SlideshowDialogFragment extends DialogFragment {
             container.removeView((View) object);
         }
     }
+
+
 }
