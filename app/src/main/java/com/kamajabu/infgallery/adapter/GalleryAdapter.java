@@ -16,11 +16,6 @@ import com.kamajabu.infgallery.model.Image;
 
 import java.util.List;
 
-
-/**
- * Created by Lincoln on 31/03/16.
- */
-
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHolder> {
 
     private List<Image> images;

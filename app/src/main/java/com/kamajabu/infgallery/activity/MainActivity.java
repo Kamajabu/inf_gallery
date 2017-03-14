@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-        /* recyclerView.addOnItemTouchListener(new GalleryAdapter.RecyclerTouchListener(getApplicationContext(), recyclerView, new GalleryAdapter.ClickListener() {
+        recyclerView.addOnItemTouchListener(new GalleryAdapter.RecyclerTouchListener(getApplicationContext(),
+                recyclerView, new GalleryAdapter.ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 Bundle bundle = new Bundle();
@@ -62,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
                 bundle.putInt("position", position);
 
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.setCustomAnimations(R.anim.anim_slide_in_top, R.anim.anim_slide_out_bottom);
+
                 SlideshowDialogFragment newFragment = SlideshowDialogFragment.newInstance();
                 newFragment.setArguments(bundle);
                 newFragment.show(ft, "slideshow");
@@ -71,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             public void onLongClick(View view, int position) {
 
             }
-        }));*/
+        }));
 
         fetchImages();
     }

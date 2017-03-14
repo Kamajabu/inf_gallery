@@ -2,9 +2,6 @@ package com.kamajabu.infgallery.model;
 
 import java.io.Serializable;
 
-/**
- * Created by Lincoln on 04/04/16.
- */
 public class Image implements Serializable{
     private String name;
     private String small, medium, large;
