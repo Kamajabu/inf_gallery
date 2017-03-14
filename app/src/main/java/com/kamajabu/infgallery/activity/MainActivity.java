@@ -25,6 +25,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static android.support.v7.widget.RecyclerView.SCROLL_STATE_IDLE;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,12 +52,36 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new GalleryAdapter(getApplicationContext(), images);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
+
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-        recyclerView.addOnItemTouchListener(new GalleryAdapter.RecyclerTouchListener(getApplicationContext(),
-                recyclerView, new GalleryAdapter.ClickListener() {
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                                             @Override
+                                             public void onScrollStateChanged(RecyclerView recyclerView, int state) {
+                                                 super.onScrollStateChanged(recyclerView, state);
+
+                                                 if (state == SCROLL_STATE_IDLE) {
+                                                     GridLayoutManager glm = ((GridLayoutManager) recyclerView.getLayoutManager());
+                                                     int lastVisiblePosition = glm.findLastVisibleItemPosition();
+                                                     recyclerView.scrollToPosition(lastVisiblePosition);
+                                                 }
+
+
+                                             }
+                                         }
+
+        );
+
+        recyclerView.addOnItemTouchListener(new GalleryAdapter.RecyclerTouchListener(
+
+                getApplicationContext(),
+
+                recyclerView, new GalleryAdapter.ClickListener()
+
+        {
             @Override
             public void onClick(View view, int position) {
                 Bundle bundle = new Bundle();
@@ -74,9 +100,12 @@ public class MainActivity extends AppCompatActivity {
             public void onLongClick(View view, int position) {
 
             }
-        }));
+        }
+
+        ));
 
         fetchImages();
+
     }
 
     private void fetchImages() {

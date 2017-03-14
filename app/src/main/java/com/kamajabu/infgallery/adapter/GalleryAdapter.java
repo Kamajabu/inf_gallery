@@ -20,7 +20,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
 
     private List<Image> images;
     private Context mContext;
-    private ViewGroup viewGroupParent;
+    private View viewHolder;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView thumbnail;
@@ -42,20 +42,11 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.gallery_thumbnail, parent, false);
 
-        viewGroupParent = parent;
-
         return new MyViewHolder(itemView);
     }
-    public int getHeight() {
-        if(viewGroupParent!=null) {
-            return viewGroupParent.getChildAt(0).getHeight();
-        } else {
-            return -1;
-        }
-    }
-
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
+
         Image image = images.get(position);
 
         Glide.with(mContext).load(image.getMedium())
