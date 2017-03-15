@@ -4,18 +4,14 @@ import java.io.Serializable;
 
 public class Image implements Serializable{
     private String name;
-    private String small, medium, large;
-    private String timestamp;
+    private int drawable;
 
     public Image() {
     }
 
-    public Image(String name, String small, String medium, String large, String timestamp) {
+    public Image(String name, int drawable) {
         this.name = name;
-        this.small = small;
-        this.medium = medium;
-        this.large = large;
-        this.timestamp = timestamp;
+        this.drawable = drawable;
     }
 
     public String getName() {
@@ -25,36 +21,12 @@ public class Image implements Serializable{
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getSmall() {
-        return small;
+    
+    public int getDrawable() {
+        return drawable;
     }
 
-    public void setSmall(String small) {
-        this.small = small;
-    }
-
-    public String getMedium() {
-        return medium;
-    }
-
-    public void setMedium(String medium) {
-        this.medium = medium;
-    }
-
-    public String getLarge() {
-        return large;
-    }
-
-    public void setLarge(String large) {
-        this.large = large;
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+    public void setDrawable(int drawable) {
+        this.drawable = drawable;
     }
 }

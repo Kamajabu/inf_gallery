@@ -109,7 +109,6 @@ public class SlideshowDialogFragment extends DialogFragment {
 
         Image image = images.get(position);
         lblTitle.setText(image.getName());
-        lblDate.setText(image.getTimestamp());
     }
 
     @Override
@@ -137,7 +136,8 @@ public class SlideshowDialogFragment extends DialogFragment {
 
             Image image = images.get(position);
 
-            Glide.with(getActivity()).load(image.getLarge())
+            Glide.with(getActivity()).load("")
+                    .placeholder(image.getDrawable())
                     .thumbnail(0.5f)
                     .crossFade()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
