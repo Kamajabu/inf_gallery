@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements ConfigData {
                                                  if (state == SCROLL_STATE_IDLE) {
                                                      GridLayoutManager glm = ((GridLayoutManager) recyclerView.getLayoutManager());
                                                      int lastVisiblePosition = glm.findLastVisibleItemPosition();
-                                                     recyclerView.scrollToPosition(lastVisiblePosition);
+                                                     recyclerView.smoothScrollToPosition(lastVisiblePosition);
                                                  }
                                              }
                                          }
