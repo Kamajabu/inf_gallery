@@ -1,13 +1,12 @@
 package com.kamajabu.infgallery.activity;
 
+import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.kamajabu.infgallery.R;
@@ -16,13 +15,9 @@ import com.kamajabu.infgallery.model.Image;
 
 import java.util.ArrayList;
 
-
 import static android.support.v7.widget.RecyclerView.SCROLL_STATE_IDLE;
 
-public class MainActivity extends AppCompatActivity implements ConfigData {
-    
-    private String TAG = MainActivity.class.getSimpleName();
-    private static final String endpoint = "http://api.androidhive.info/json/glide.json";
+public class MainActivity extends Activity implements ConfigData {
     private ArrayList<Image> images;
     private ProgressDialog pDialog;
     private GalleryAdapter mAdapter;
@@ -32,9 +27,7 @@ public class MainActivity extends AppCompatActivity implements ConfigData {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
         
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         
@@ -43,7 +36,8 @@ public class MainActivity extends AppCompatActivity implements ConfigData {
         mAdapter = new GalleryAdapter(getApplicationContext(), images);
         
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
-        
+
+
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
@@ -76,8 +70,8 @@ public class MainActivity extends AppCompatActivity implements ConfigData {
                 bundle.putSerializable("images", images);
                 bundle.putInt("position", position);
                 
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.setCustomAnimations(R.anim.anim_slide_in_top, R.anim.anim_slide_out_bottom);
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.setCustomAnimations(R.animator.anim_slide_in_top, R.animator.anim_slide_out_bottom);
                 
                 SlideshowDialogFragment newFragment = SlideshowDialogFragment.newInstance();
                 newFragment.setCancelable(false);
