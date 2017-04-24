@@ -1,8 +1,8 @@
 package com.kamajabu.infgallery.activity;
 
+import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -21,7 +21,6 @@ import com.kamajabu.infgallery.model.Image;
 import java.util.ArrayList;
 
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class SlideshowDialogFragment extends DialogFragment {
     private String TAG = SlideshowDialogFragment.class.getSimpleName();
