@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
         mAdapter = new GalleryAdapter(getApplicationContext(), images);
         prepareRecyclerView();
         createListeners();
-        
+
         mAdapter.notifyDataSetChanged();
     }
 
