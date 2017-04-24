@@ -1,20 +1,15 @@
 package com.kamajabu.infgallery.activity;
 
 import android.app.DialogFragment;
-import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kamajabu.infgallery.R;
 import com.kamajabu.infgallery.model.Image;
 
@@ -27,12 +22,11 @@ public class SlideshowDialogFragment extends DialogFragment {
     private ArrayList<Image> images;
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
-    private TextView lblCount, lblTitle, lblDate;
+    private TextView lblCount, lblTitle;
     private int selectedPosition = 0;
 
     static SlideshowDialogFragment newInstance() {
-        SlideshowDialogFragment f = new SlideshowDialogFragment();
-        return f;
+        return new SlideshowDialogFragment();
     }
 
     @Override
@@ -49,14 +43,9 @@ public class SlideshowDialogFragment extends DialogFragment {
         viewPager = (ViewPager) v.findViewById(R.id.viewpager);
         lblCount = (TextView) v.findViewById(R.id.lbl_count);
         lblTitle = (TextView) v.findViewById(R.id.title);
-        lblDate = (TextView) v.findViewById(R.id.date);
 
         Button button = (Button) v.findViewById(R.id.backButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
+        button.setOnClickListener(v1 -> dismiss());
         ButterKnife.bind(v);
 
         images = (ArrayList<Image>) getArguments().getSerializable("images");
@@ -65,7 +54,7 @@ public class SlideshowDialogFragment extends DialogFragment {
         Log.e(TAG, "position: " + selectedPosition);
         Log.e(TAG, "images size: " + images.size());
 
-        myViewPagerAdapter = new MyViewPagerAdapter();
+        myViewPagerAdapter = new MyViewPagerAdapter(images, getActivity());
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
 
@@ -73,11 +62,6 @@ public class SlideshowDialogFragment extends DialogFragment {
 
         return v;
     }
-
-//    @OnClick(R.id.backButton)
-//    public void backButtonDidTouch(){
-//        dismiss();
-//    }
 
     private void setCurrentItem(int position) {
         viewPager.setCurrentItem(position, false);
@@ -99,7 +83,6 @@ public class SlideshowDialogFragment extends DialogFragment {
 
         @Override
         public void onPageScrollStateChanged(int arg0) {
-
         }
     };
 
@@ -115,54 +98,4 @@ public class SlideshowDialogFragment extends DialogFragment {
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
     }
-
-
-    //	adapter
-    public class MyViewPagerAdapter extends PagerAdapter {
-
-        private LayoutInflater layoutInflater;
-
-        public MyViewPagerAdapter() {
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-
-            layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = layoutInflater.inflate(R.layout.image_fullscreen_preview, container, false);
-
-            ImageView imageViewPreview = (ImageView) view.findViewById(R.id.image_preview);
-
-            Image image = images.get(position);
-
-            Glide.with(getActivity()).load("")
-                    .placeholder(image.getDrawable())
-                    .thumbnail(0.5f)
-                    .crossFade()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(imageViewPreview);
-
-            container.addView(view);
-
-            return view;
-        }
-
-        @Override
-        public int getCount() {
-            return images.size();
-        }
-
-        @Override
-        public boolean isViewFromObject(View view, Object obj) {
-            return view == ((View) obj);
-        }
-
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((View) object);
-        }
-    }
-
-
 }
