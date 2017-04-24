@@ -6,9 +6,6 @@ public class Image implements Serializable{
     private String name;
     private int drawable;
 
-    public Image() {
-    }
-
     public Image(String name, int drawable) {
         this.name = name;
         this.drawable = drawable;
@@ -24,9 +21,5 @@ public class Image implements Serializable{
     
     public int getDrawable() {
         return drawable;
-    }
-
-    public void setDrawable(int drawable) {
-        this.drawable = drawable;
     }
 }
