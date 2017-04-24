@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.kamajabu.infgallery.helper.SquareLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/thumbnail"
@@ -13,4 +12,4 @@
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop" />
-</com.kamajabu.infgallery.helper.SquareLayout>
+</RelativeLayout>

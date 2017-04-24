@@ -18,9 +18,6 @@ import java.util.ArrayList;
 import static android.support.v7.widget.RecyclerView.SCROLL_STATE_IDLE;
 
 public class MainActivity extends Activity implements ConfigData {
-    
-    private String TAG = MainActivity.class.getSimpleName();
-    private static final String endpoint = "http://api.androidhive.info/json/glide.json";
     private ArrayList<Image> images;
     private ProgressDialog pDialog;
     private GalleryAdapter mAdapter;
@@ -39,7 +36,8 @@ public class MainActivity extends Activity implements ConfigData {
         mAdapter = new GalleryAdapter(getApplicationContext(), images);
         
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
-        
+
+
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);

@@ -1,6 +1,7 @@
 package com.kamajabu.infgallery.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -39,7 +40,10 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                                       .inflate(R.layout.gallery_thumbnail, parent, false);
-        
+
+        GridLayoutManager.LayoutParams lp = (GridLayoutManager.LayoutParams) itemView.getLayoutParams();
+        lp.height = parent.getMeasuredHeight() / 4 +1; //add one pixel to assure that default cells fill whole screen
+        itemView.setLayoutParams(lp);
         return new MyViewHolder(itemView);
     }
     
