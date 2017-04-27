@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.View;
 
 import com.kamajabu.infgallery.R;
@@ -34,8 +35,13 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         images = DataLoader.loadData();
+    
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int width = displayMetrics.widthPixels;
+        int height = displayMetrics.heightPixels;
 
-        mAdapter = new GalleryAdapter(getApplicationContext(), images);
+        mAdapter = new GalleryAdapter(getApplicationContext(), images, height);
         prepareRecyclerView();
         createListeners();
 
