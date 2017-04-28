@@ -38,7 +38,6 @@ public class MainActivity extends Activity {
     
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
 
         mAdapter = new GalleryAdapter(getApplicationContext(), images, height);

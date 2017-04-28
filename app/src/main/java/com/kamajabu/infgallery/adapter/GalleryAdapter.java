@@ -46,9 +46,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
         itemView.setLayoutParams(lp);
         return new MyViewHolder(itemView);
     }
-    
-    
-    
+
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         
